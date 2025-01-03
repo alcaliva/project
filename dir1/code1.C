@@ -1,13 +1,7 @@
 #if !defined(__CINT__) || defined(__MAKECINT__)
 #endif
 
-#include "TGraphErrors.h"
-#include "TCanvas.h"
-#include "TRandom.h"
-#include "TGraph.h"
-#include "TFile.h"
-#include "TList.h"
-
+//Edited version
 //User Functions
 void plot  (TH1F *jet, TH1F *ue,double Rjet,double ptLead,double ptJet);
 void style (TH1F *histogram, const char *titleXaxis, const char *titleYaxis, Int_t marker, Int_t color);
