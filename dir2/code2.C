@@ -8,11 +8,7 @@
 #include "TFile.h"
 #include "TList.h"
 
-//User Functions
-void plot  (TH1F *jet, TH1F *ue,double Rjet,double ptLead,double ptJet);
-void style (TH1F *histogram, const char *titleXaxis, const char *titleYaxis, Int_t marker, Int_t color);
-void get_spectrum_in_ptoverA (TH1F *spectrum_pt, TH1F *spectrum_pt_overA);
-TPaveText *text (double Rjet,double ptLead,double ptJet);
+
 
 //________________________________________________________________________________________________________________________________________
 void code1 ()  {
