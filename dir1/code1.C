@@ -1,50 +1,7 @@
 #if !defined(__CINT__) || defined(__MAKECINT__)
 #endif
 
-//Edited version
-//User Functions
-void plot  (TH1F *jet, TH1F *ue,double Rjet,double ptLead,double ptJet);
-void style (TH1F *histogram, const char *titleXaxis, const char *titleYaxis, Int_t marker, Int_t color);
-void get_spectrum_in_ptoverA (TH1F *spectrum_pt, TH1F *spectrum_pt_overA);
-TPaveText *text (double Rjet,double ptLead,double ptJet);
 
-//________________________________________________________________________________________________________________________________________
-void code1 ()  {
-    
-    
-     TH1F *d_over_p_ue = new TF1;
-     
-    //d/p
-    TH1F *d_over_p_jet = (TH1F*) antid_jet_ptoverA ->Clone("d_over_p_jet");
-    TH1F *d_over_p_ue  = (TH1F*) antid_ue_ptoverA ->Clone("d_over_p_ue");
-    d_over_p_jet -> Divide (antip_jet);
-    d_over_p_ue  -> Divide (antip_ue);
-    style (d_over_p_jet,"#it{p}_{T}/#it{A} (GeV/#it{c})","d / p",20,2);
-    style (d_over_p_ue,"#it{p}_{T}/#it{A} (GeV/#it{c})","d / p",21,4);
-    
-    //plot
-    plot (d_over_p_jet,d_over_p_ue,Rjet,ptLead,ptJet);
-}
-//_______________________________________________________________________________________________________________________________________
-void style (TH1F *histogram, const char *titleXaxis, const char *titleYaxis, Int_t marker, Int_t color)  {
-    
-    histogram -> SetStats(false);
-    histogram -> GetXaxis() -> SetTitle(titleXaxis);
-    histogram -> SetTitleSize(0.055,"x");
-    histogram -> SetLabelSize(0.055,"x");
-    histogram -> GetXaxis() -> SetTitleOffset(1.1);
-    histogram -> GetYaxis() -> SetTitle(titleYaxis);
-    histogram -> SetTitleSize(0.055,"y");
-    histogram -> SetLabelSize(0.055,"y");
-    histogram -> GetYaxis() -> SetTitleOffset(1.5);
-    histogram -> GetYaxis() -> CenterTitle();
-    histogram -> SetLineStyle(1);
-    histogram -> SetLineColor(color);
-    histogram -> SetMarkerColor(color);
-    histogram -> SetMarkerStyle(marker);
-    histogram -> SetMarkerSize(1.2);
-    histogram -> SetLineWidth(2);
-}
 //________________________________________________________________________________________________________________________________________
 void plot  (TH1F *jet, TH1F *ue,double Rjet,double ptLead,double ptJet)  {
     
