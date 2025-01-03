@@ -11,29 +11,9 @@ TPaveText *text (double Rjet,double ptLead,double ptJet);
 //________________________________________________________________________________________________________________________________________
 void code1 ()  {
     
-    //Get Input Files
-    TFile *file_antip = TFile::Open ("output/corr_yield_antiprotons.root");
-    TFile *file_antid = TFile::Open ("output/corr_yield_antideuterons.root");
     
-    //Get Input Spectra
-    TH1F *antip_jet = (TH1F*) file_antip->Get("corr_yield_jetminusue_antip");
-    TH1F *antip_ue  = (TH1F*) file_antip->Get("corr_yield_ue_antip");
-    TH1F *antid_jet = (TH1F*) file_antid->Get("corr_yield_jetminusue_antid");
-    TH1F *antid_ue  = (TH1F*) file_antid->Get("corr_yield_ue_antid");
-    
-    //Get Parameters
-    TFile *inputParam = TFile::Open ("output/projections.root");
-    TH1F *param = (TH1F*)inputParam->Get ("param");
-    double Rjet   = param->GetBinContent(1);
-    double ptLead = param->GetBinContent(2);
-    double ptJet  = param->GetBinContent(3);
-    
-    //Deuteron Spectra in pt/A
-    TH1F *antid_jet_ptoverA = (TH1F*) antip_jet->Clone("antid_jet_ptoverA");
-    TH1F *antid_ue_ptoverA  = (TH1F*) antip_jet->Clone("antid_ue_ptoverA");
-    get_spectrum_in_ptoverA (antid_jet,antid_jet_ptoverA);
-    get_spectrum_in_ptoverA (antid_ue,antid_ue_ptoverA);
-    
+     TH1F *d_over_p_ue = new TF1;
+     
     //d/p
     TH1F *d_over_p_jet = (TH1F*) antid_jet_ptoverA ->Clone("d_over_p_jet");
     TH1F *d_over_p_ue  = (TH1F*) antid_ue_ptoverA ->Clone("d_over_p_ue");
